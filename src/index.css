@@ -5,6 +5,14 @@
 	box-sizing: border-box;
 }
 
+@screen lg {
+	.background-image-lg {
+		background-image: url("../../src/assets/green-blobs.svg");
+		background-size: cover;
+		background-position: center;
+	}
+}
+
 body {
 	box-sizing: inherit;
 	margin: 0;
