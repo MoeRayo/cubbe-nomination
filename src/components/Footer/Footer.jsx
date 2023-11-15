@@ -8,12 +8,16 @@ import { faYoutube } from "@fortawesome/free-brands-svg-icons";
 
 const Footer = () => {
 	return (
-		<footer className="bg-black text-white pt-3 pb-5">
-			<div className="w-[65%] m-auto">
-				<img src={cubelogo} alt="" className="block mb-3" />
+		<footer className="bg-black text-white pt-3 pb-5 px-9">
+			<div className="w-[90%] m-auto">
+				<img
+					src={cubelogo}
+					alt=""
+					className="block mb-3 md:mr-0 m-auto md:ml-0"
+				/>
 				<hr className="border-2" />
-				<div className="flex justify-between items-center">
-					<section className="flex items-center my-7 font-AnonymousPro space-x-5">
+				<div className="flex flex-col md:flex-row justify-between my-7 items-start">
+					<section className="flex flex-col md:flex-row md:space-y-0 space-y-3 items-start  font-AnonymousPro lg:space-x-5 md:space-x-3">
 						<section className="">
 							<h3 className="font-Poppins font-bold leading-relaxed text-xs uppercase">
 								Bournemouth
@@ -58,7 +62,7 @@ const Footer = () => {
 						</section>
 					</section>
 
-					<section>
+					<section className="md:mt-0 mt-5">
 						<h3 className="font-Poppins font-bold leading-relaxed text-xs uppercase">
 							get social
 						</h3>
@@ -102,9 +106,11 @@ const Footer = () => {
 					</section>
 				</div>
 
-				<div className="font-AnonymousPro flex justify-between text-xs font-bold">
-					<p>© 2023 3 Sided Cube</p>
-					<p>Let’s Build Tech For Good</p>
+				<div className="font-AnonymousPro flex justify-between text-xs font-bold md:flex-row flex-col">
+					<p className="text-center md:text-left leading-loose md:leading-none">
+						© 2023 3 Sided Cube
+					</p>
+					<p className="text-center md:text-right">Let’s Build Tech For Good</p>
 				</div>
 			</div>
 		</footer>
