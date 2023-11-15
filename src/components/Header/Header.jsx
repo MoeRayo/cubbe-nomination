@@ -4,7 +4,7 @@ const Header = () => {
 	return (
 		<header className="bg-black flex justify-between items-center px-4">
 			<img src={cubelogo} alt="" className="block" />
-			<p className="text-white underline body-font font-AnonymousPro">
+			<p className="text-white underline text-xs font-AnonymousPro">
 				Your nominations ()
 			</p>
 		</header>
