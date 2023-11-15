@@ -8,8 +8,8 @@ import { faYoutube } from "@fortawesome/free-brands-svg-icons";
 
 const Footer = () => {
 	return (
-		<footer className="bg-black text-white pt-3 pb-5 px-9">
-			<div className="w-[90%] m-auto">
+		<footer className="bg-black text-white pt-3 pb-5 px-5 md:px-9">
+			<div className="w-[95%] md:w-[85%] m-auto">
 				<img
 					src={cubelogo}
 					alt=""
