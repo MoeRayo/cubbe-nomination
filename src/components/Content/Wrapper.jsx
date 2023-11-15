@@ -1,4 +1,7 @@
 import { useState, useEffect } from "react";
+import { Route, Switch } from "react-router-dom";
+import NominationsPage from "./Nominations";
+import LandingContent from "./LandingContent";
 
 const Wrapper = () => {
 	const windowWidth = window.innerWidth >= 768;
@@ -36,13 +39,14 @@ const Wrapper = () => {
 	}, []);
 
 	return (
-		<main
-			className="grow min-h-screen"
-			style={showGradient ? gradientStyle : {}}>
+		<main className="grow relative" style={showGradient ? gradientStyle : {}}>
 			<div
 				className={showBackground ? "min-h-screen" : ""}
 				style={showBackground ? backgroundImageStyle : {}}>
-				<p>This is text content.</p>
+				<Switch>
+					<Route exact path="/" component={LandingContent} />
+					<Route path="/nominations" component={NominationsPage} />
+				</Switch>
 			</div>
 		</main>
 	);

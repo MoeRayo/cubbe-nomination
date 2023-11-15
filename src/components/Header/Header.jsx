@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import cubelogo from "../../assets/3sc-logo.svg";
 import folder from "../../assets/folder.svg";
 import emblem from "../../assets/emblem.svg";
@@ -20,9 +21,11 @@ const Header = () => {
 					className="inline-block md:hidden cursor-pointer"
 				/>
 			</div>
-			<p className="text-white underline text-xs font-AnonymousPro hidden md:block">
+			<Link
+				to="/nominations"
+				className="text-white underline text-xs font-AnonymousPro hidden md:block">
 				Your nominations ()
-			</p>
+			</Link>
 		</header>
 	);
 };
