@@ -7,13 +7,13 @@ const LandingContent = () => {
 	const isSmallScreen = useMediaQuery({ maxWidth: 370 });
 
 	return (
-		<div className="md:w-[42%] m-auto md:my-10  text-center flex flex-col">
+		<div className="md:w-[42%] m-auto md:my-10 text-center flex flex-col">
 			<img
 				src={isSmallScreen ? smlandingImage : lglandingImage}
-				alt="image of people busy"
+				alt="image of people at work"
 				className="m-auto"
 			/>
-			<section className="py-7 px-6 bg-white flex-1 relative">
+			<section className="py-7 px-6 bg-white flex-1">
 				<h2 className="uppercase font-Poppins font-bold text-2xl">
 					CUBE OF THE MONTH NOMINATIONS
 				</h2>

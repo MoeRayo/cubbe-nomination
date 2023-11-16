@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import NominationsPage from "./Nominations";
+import Signup from "../auth/Signup";
+import Signin from "../auth/Signin";
+import SelectNominee from "./SelectNominee";
 import LandingContent from "./LandingContent";
 
 const Wrapper = () => {
@@ -45,7 +48,10 @@ const Wrapper = () => {
 				style={showBackground ? backgroundImageStyle : {}}>
 				<Switch>
 					<Route exact path="/" component={LandingContent} />
+					<Route path="/Signup" component={Signup} />
+					<Route path="/Signin" component={Signin} />
 					<Route path="/nominations" component={NominationsPage} />
+					<Route path="/select-nominee" component={SelectNominee} />
 				</Switch>
 			</div>
 		</main>
