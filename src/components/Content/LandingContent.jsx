@@ -22,7 +22,7 @@ const LandingContent = () => {
 					cubes do. Each month one of our cubes is crowned cube of the month
 					👑⭐. Please nominate who you think deserves this months title.
 				</p>
-				<LargeScreenButtons />
+				<LargeScreenButtons route="/Signin" buttonText="get started" />
 			</section>
 		</div>
 	);
