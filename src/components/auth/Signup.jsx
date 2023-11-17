@@ -1,7 +1,7 @@
 import { Link, useHistory } from "react-router-dom";
 import AuthForm from "../../reuseables/AuthForm";
-import LargeScreenButtons from "../../reuseables/LargeScreenButtons";
 import { fetchCubeAcademyRegister } from "../../api/nominationsComponents";
+import { setAuthToken } from "../../utils/authHelper";
 
 const Signup = () => {
 	const history = useHistory();
@@ -15,17 +15,14 @@ const Signup = () => {
 					password: data.password,
 				},
 			});
+			const authToken = response?.data?.authToken;
+
+			setAuthToken(authToken);
 
 			history.push("/select-nominee");
-
-			console.log(response);
 		} catch (error) {
 			console.error(error);
 		}
-	};
-
-	const handleSuccess = () => {
-		history.push("/select-nominee");
 	};
 
 	const fields = [

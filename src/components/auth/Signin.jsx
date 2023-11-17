@@ -1,13 +1,9 @@
 import { Link, useHistory } from "react-router-dom";
 import AuthForm from "../../reuseables/AuthForm";
-import LargeScreenButtons from "../../reuseables/LargeScreenButtons";
 import { fetchCubeAcademyLogin } from "../../api/nominationsComponents";
-
+import { setAuthToken } from "../../utils/authHelper";
 const Signin = () => {
 	const history = useHistory();
-	let routeNavigation;
-
-	let route;
 	const onSubmit = async (data) => {
 		try {
 			const response = await fetchCubeAcademyLogin({
@@ -16,20 +12,13 @@ const Signin = () => {
 					password: data.password,
 				},
 			});
+			const authToken = response?.data?.authToken;
+
+			setAuthToken(authToken);
 
 			history.push("/select-nominee");
-			routeNavigation = true;
-
-			console.log(response);
 		} catch (error) {
 			console.error(error);
-		}
-	};
-
-	const handleSuccess = () => {
-		if (routeNavigation) {
-			// history.push("/select-nominee");
-			route = "/select-nominee";
 		}
 	};
 
