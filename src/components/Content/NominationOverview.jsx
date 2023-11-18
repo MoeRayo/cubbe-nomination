@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
-// import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import lgNominationOverview from "../../assets/lg-nomination-overview-image.png";
 import smNominationOverview from "../../assets/sm-nomination-overview-image.png";
 import EditableForm from "../../reuseables/EditableForm";
@@ -8,7 +8,7 @@ import { getAuthToken } from "../../utils/authHelper";
 import { fetchCubeAcademyCreateNomination } from "../../api/nominationsComponents";
 
 const NominationOverview = () => {
-	// const history = useHistory();
+	const history = useHistory();
 	const isSmallScreen = useMediaQuery({ maxWidth: 370 });
 
 	const location = useLocation();
@@ -26,7 +26,7 @@ const NominationOverview = () => {
 	};
 	const createNomination = async (data) => {
 		try {
-			const response = await fetchCubeAcademyCreateNomination({
+			await fetchCubeAcademyCreateNomination({
 				headers: {
 					Authorization: `Bearer ${getAuthToken()}`,
 				},
@@ -36,7 +36,7 @@ const NominationOverview = () => {
 					process: data.opinion,
 				},
 			});
-			console.log("res", response);
+			history.push("/nomination-submissison");
 		} catch (error) {
 			console.error("Error fetching data:", error);
 		}

@@ -181,7 +181,6 @@ const EditableForm = ({ initialData, onSubmit, submitNominationData }) => {
 								/>
 							) : (
 								<>
-									<p>{initialData.nominee_id}</p>
 									<p className="font-AnonymousPro pt-1 text-gray-700">
 										{capitalizeWords(initialData.opinion)}
 									</p>
