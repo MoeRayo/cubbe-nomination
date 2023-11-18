@@ -4,6 +4,7 @@ import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import PropTypes from "prop-types";
 import * as Yup from "yup";
+import { useHistory } from "react-router-dom";
 
 Modal.setAppElement("#root");
 
@@ -12,6 +13,8 @@ const schema = Yup.object().shape({
 });
 
 const SelectNomineeDropdown = ({ nominees, onSubmit }) => {
+	const history = useHistory();
+
 	const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
 
 	const openConfirmation = () => {
@@ -24,12 +27,13 @@ const SelectNomineeDropdown = ({ nominees, onSubmit }) => {
 
 	const confirmLeave = () => {
 		closeConfirmation();
+		history.push("/");
 	};
 
 	const {
 		handleSubmit,
 		control,
-		formState: { errors, isDirty },
+		formState: { errors },
 	} = useForm({
 		resolver: yupResolver(schema),
 	});

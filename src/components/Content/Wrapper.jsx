@@ -5,6 +5,8 @@ import Signup from "../auth/Signup";
 import Signin from "../auth/Signin";
 import SelectNominee from "./SelectNominee";
 import NominationReason from "./NominationReason";
+import NominationOpinion from "./NominationOpinion";
+import NominationOverview from "./NominationOverview";
 
 import LandingContent from "./LandingContent";
 
@@ -55,6 +57,8 @@ const Wrapper = () => {
 					<Route path="/nominations" component={NominationsPage} />
 					<Route path="/select-nominee" component={SelectNominee} />
 					<Route path="/nomination-reason" component={NominationReason} />
+					<Route path="/nomination-opinion" component={NominationOpinion} />
+					<Route path="/nomination-overview" component={NominationOverview} />
 				</Switch>
 			</div>
 		</main>

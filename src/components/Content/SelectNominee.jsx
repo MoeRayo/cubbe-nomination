@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+
 import lgselectNominee from "../../assets/lg-select-nominee.png";
 import smselectNominee from "../../assets/sm-select-nominee.png";
 import { useMediaQuery } from "react-responsive";
@@ -9,8 +11,10 @@ import { fetchCubeAcademyRetrieveNomineeList } from "../../api/nominationsCompon
 
 const SelectNominee = () => {
 	const isSmallScreen = useMediaQuery({ maxWidth: 370 });
-	const [nominees, setNominees] = useState([]); // Define nominees state
+	const [nominees, setNominees] = useState([]);
 	const history = useHistory();
+	const location = useLocation();
+	const nominationReason = location.state?.nominationReason;
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -35,7 +39,7 @@ const SelectNominee = () => {
 
 		console.log("Selected Nominee:", selectedNominee);
 
-		history.push("/nomination-reason", { selectedNominee });
+		history.push("/nomination-reason", { selectedNominee, nominationReason });
 	};
 
 	return (

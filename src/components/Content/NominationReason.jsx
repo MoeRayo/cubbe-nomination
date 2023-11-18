@@ -15,10 +15,12 @@ const NominationReason = () => {
 	const isSmallScreen = useMediaQuery({ maxWidth: 370 });
 
 	const location = useLocation();
-	console.log(location);
-	const selectedNominee = location.state?.selectedNominee;
+	console.log("c", location);
 
-	// Move useForm outside the conditional rendering block
+	const selectedNominee = location.state?.selectedNominee;
+	const nominationReason = location.state?.nominationReason;
+	const selectedNomineeId = location.state?.selectedNomineeId;
+
 	const schema = Yup.object().shape({
 		nominationReason: Yup.string().required("Nomination reason is required"),
 	});
@@ -44,14 +46,12 @@ const NominationReason = () => {
 		history.push("/select-nominee");
 	};
 
-	// Handle the case where there is no selectedNominee
-	if (!selectedNominee) {
-		return <p>No nominee selected.</p>;
-	}
-
 	const onSubmit = (data) => {
-		// Handle form submission
-		console.log(data);
+		history.push("/nomination-opinion", {
+			selectedNominee,
+			nominationReason: data.nominationReason,
+			selectedNomineeId,
+		});
 	};
 
 	return (
@@ -70,7 +70,9 @@ const NominationReason = () => {
 				<div className="w-[90%] mx-auto">
 					<h2 className="uppercase font-Poppins font-bold text-2xl">
 						I’d like to nominate{" "}
-						<span className="text-pink-500">{selectedNominee.first_name} </span>
+						<span className="text-pink-500">
+							{selectedNominee?.first_name || selectedNominee}{" "}
+						</span>
 						because...
 					</h2>
 					<p className="font-AnonymousPro mt-4 mb-5 leading-6 text-base">
@@ -85,6 +87,7 @@ const NominationReason = () => {
 							<Controller
 								name="nominationReason"
 								control={control}
+								defaultValue={nominationReason || ""}
 								render={({ field }) => (
 									<textarea
 										{...field}
