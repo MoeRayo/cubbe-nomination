@@ -29,7 +29,7 @@ const NominationSubmission = () => {
 
 				<div className="flex flex-col md:flex-row justify-center  space-x-3 my-7">
 					<Link to="/view-nominations">
-						<button className=" border-2 text-xs text-black hover:text-white hover:bg-black uppercase border-black font-Poppins font-bold py-3 px-2 block lg:w-56 md:w-28 w-full">
+						<button className="hidden md:block border-2 text-xs text-black hover:text-white hover:bg-black uppercase border-black font-Poppins font-bold py-3 px-2 lg:w-56 md:w-28 w-full">
 							view nomination
 						</button>
 					</Link>
