@@ -6,6 +6,7 @@ import cubelogo from "../../assets/3sc-logo.svg";
 import folder from "../../assets/folder.svg";
 import emblem from "../../assets/emblem.svg";
 import plus from "../../assets/plus.svg";
+import toast, { Toaster } from "react-hot-toast";
 
 const Header = () => {
 	const [numberOfNominations, setNumberOfNominations] = useState();
@@ -22,7 +23,10 @@ const Header = () => {
 
 				setNumberOfNominations(count.data.length);
 			} catch (error) {
-				console.error("Error fetching data:", error);
+				toast.error(error.stack.error, {
+					duration: 2000,
+					position: "top-right",
+				});
 			}
 		};
 
@@ -68,6 +72,7 @@ const Header = () => {
 					Your nominations ({numberOfNominations})
 				</Link>
 			</div>
+			<Toaster />
 		</header>
 	);
 };
