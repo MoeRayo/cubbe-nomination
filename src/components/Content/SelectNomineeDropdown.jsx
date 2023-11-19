@@ -5,6 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import PropTypes from "prop-types";
 import * as Yup from "yup";
 import { useHistory } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
 
 Modal.setAppElement("#root");
 
@@ -14,6 +15,7 @@ const schema = Yup.object().shape({
 
 const SelectNomineeDropdown = ({ nominees, onSubmit }) => {
 	const history = useHistory();
+	const isSmallScreen = useMediaQuery({ maxWidth: 370 });
 
 	const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
 
@@ -72,7 +74,10 @@ const SelectNomineeDropdown = ({ nominees, onSubmit }) => {
 					</p>
 				)}
 			</div>
-			<div className="flex md:flex-row flex-col justify-between my-6">
+			<div
+				className={`bg-white ${
+					isSmallScreen ? "shadow-2xl m-0 shadow-black sticky bottom-0 p-2" : ""
+				}`}>
 				<button
 					type="button"
 					onClick={openConfirmation}

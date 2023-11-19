@@ -28,24 +28,34 @@ const Header = () => {
 	}, [numberOfNominations]);
 	return (
 		<header className="bg-black flex justify-between items-center px-5 py-4 md:py-0">
-			<Link to="/">
-				<img src={cubelogo} alt="" className="hidden md:block" />
-			</Link>
-			<Link to="/">
-				<img src={emblem} alt="" className="block md:hidden" />
-			</Link>
+			<div>
+				<Link to="/">
+					<img src={cubelogo} alt="" className="hidden md:block" />
+				</Link>
+				<Link to="/">
+					<img
+						src={emblem}
+						alt=""
+						className="block md:hidden justify-self-start"
+					/>
+				</Link>
+			</div>
 
 			<div>
-				<img
-					src={plus}
-					alt=""
-					className="inline-block md:hidden mr-3 cursor-pointer"
-				/>
-				<img
-					src={folder}
-					alt=""
-					className="inline-block md:hidden cursor-pointer"
-				/>
+				<Link to="/select-nominee">
+					<img
+						src={plus}
+						alt=""
+						className="inline-block md:hidden mr-5 cursor-pointer"
+					/>
+				</Link>
+				<Link to="/view-nominations">
+					<img
+						src={folder}
+						alt=""
+						className="inline-block md:hidden cursor-pointer"
+					/>
+				</Link>
 			</div>
 			<Link
 				to="/view-nominations"
