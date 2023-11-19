@@ -9,8 +9,10 @@ import plus from "../../assets/plus.svg";
 
 const Header = () => {
 	const [numberOfNominations, setNumberOfNominations] = useState(0);
+	const [authState, setAuthState] = useState();
+
 	useEffect(() => {
-		const fetchNominationsCount = async () => {
+		const fetchData = async () => {
 			try {
 				const count = await fetchCubeAcademyGetAllNominations({
 					headers: {
@@ -24,8 +26,12 @@ const Header = () => {
 			}
 		};
 
-		fetchNominationsCount();
-	}, [numberOfNominations]);
+		if (getAuthToken()) {
+			fetchData();
+			setAuthState(getAuthToken());
+		}
+	}, [authState]);
+
 	return (
 		<header className="bg-black flex justify-between items-center px-5 py-4 md:py-0">
 			<div>
@@ -56,12 +62,12 @@ const Header = () => {
 						className="inline-block md:hidden cursor-pointer"
 					/>
 				</Link>
+				<Link
+					to="/view-nominations"
+					className="text-white underline text-xs font-AnonymousPro hidden md:block">
+					Your nominations ({numberOfNominations})
+				</Link>
 			</div>
-			<Link
-				to="/view-nominations"
-				className="text-white underline text-xs font-AnonymousPro hidden md:block">
-				Your nominations ({numberOfNominations})
-			</Link>
 		</header>
 	);
 };

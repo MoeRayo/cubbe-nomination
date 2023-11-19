@@ -8,6 +8,7 @@ import SelectNomineeDropdown from "./SelectNomineeDropdown";
 import { getAuthToken } from "../../utils/authHelper";
 import { useHistory } from "react-router-dom";
 import { fetchCubeAcademyRetrieveNomineeList } from "../../api/nominationsComponents";
+import toast, { Toaster } from "react-hot-toast";
 
 const SelectNominee = () => {
 	const isSmallScreen = useMediaQuery({ maxWidth: 370 });
@@ -27,7 +28,10 @@ const SelectNominee = () => {
 
 				setNominees(response.data);
 			} catch (error) {
-				console.error("Error fetching data:", error);
+				toast.error(error.stack.error, {
+					duration: 2000,
+					position: "top-right",
+				});
 			}
 		};
 
@@ -36,8 +40,6 @@ const SelectNominee = () => {
 
 	const onSubmit = (data) => {
 		const selectedNominee = JSON.parse(data.nominee);
-
-		console.log("Selected Nominee:", selectedNominee);
 
 		history.push("/nomination-reason", { selectedNominee, nominationReason });
 	};
@@ -54,12 +56,12 @@ const SelectNominee = () => {
 				</div>
 			</div>
 
-			<section className="py-3 px-6 bg-white flex-1 relative">
+			<section className="py-3 md:px-6 bg-white flex-1 ">
 				<div className="w-[90%] mx-auto">
 					<h2 className="uppercase font-Poppins font-bold text-2xl ">
 						I’d like to nominate...
 					</h2>
-					<p className="font-AnonymousPro mt-4 mb-5 leading-6 text-base">
+					<p className="font-AnonymousPro mt-4 mb-5 leading-6 text-base ">
 						Please select a cube who you feel has done something honourable this
 						month or just all round has a great work ethic.
 					</p>
@@ -67,6 +69,7 @@ const SelectNominee = () => {
 					<SelectNomineeDropdown nominees={nominees} onSubmit={onSubmit} />
 				</div>
 			</section>
+			<Toaster />
 		</div>
 	);
 };

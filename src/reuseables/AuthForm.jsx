@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import PropTypes from "prop-types";
 
 const AuthForm = ({ onSubmit, fields, buttonText }) => {
 	const {
@@ -50,12 +51,23 @@ const AuthForm = ({ onSubmit, fields, buttonText }) => {
 				</section>
 			))}
 			<button
-				className=" block m-auto bg-black my-5 text-white px-4 w-[40%] py-3 text-sm font-bold uppercase font-Poppins hover:bg-white hover:border-2 hover:border-black hover:text-black transition-all"
+				className="sticky border-2 block m-auto bg-black my-5 text-white px-4 md:w-[60%] lg:w-[40%] py-3 text-sm font-bold uppercase font-Poppins hover:bg-white  hover:border-black hover:text-black transition-all"
 				type="submit">
 				{buttonText}
 			</button>
 		</form>
 	);
+};
+AuthForm.propTypes = {
+	buttonText: PropTypes.string,
+	onSubmit: PropTypes.func,
+	fields: PropTypes.arrayOf(
+		PropTypes.shape({
+			name: PropTypes.string.isRequired,
+			label: PropTypes.string.isRequired,
+			type: PropTypes.string.isRequired,
+		})
+	),
 };
 
 export default AuthForm;

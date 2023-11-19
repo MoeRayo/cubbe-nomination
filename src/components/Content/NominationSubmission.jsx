@@ -1,4 +1,3 @@
-import { useLocation } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 import { Link } from "react-router-dom";
 import lgNominationSubmission from "../../assets/lg-nomination-submission-image.png";
@@ -6,9 +5,6 @@ import smNominationSubmission from "../../assets/sm-nomination-submission-image.
 
 const NominationSubmission = () => {
 	const isSmallScreen = useMediaQuery({ maxWidth: 370 });
-
-	const location = useLocation();
-	console.log("c", location);
 
 	return (
 		<div className="md:w-[50%] m-auto md:my-10 relative">

@@ -18,7 +18,7 @@ const NominationOpinion = () => {
 	const history = useHistory();
 	const isSmallScreen = useMediaQuery({ maxWidth: 370 });
 	const isMidScreen = useMediaQuery({ maxWidth: 767 });
-	const [selectedOpinion, setSelectedOpinion] = useState(null);
+	const [selectedOpinion, setSelectedOpinion] = useState();
 
 	const location = useLocation();
 	const selectedNominee = location.state?.selectedNominee;
@@ -67,11 +67,10 @@ const NominationOpinion = () => {
 
 	const confirmLeave = () => {
 		closeConfirmation();
-		history.push("/nomination-reason", { selectedNominee });
+		history.push("/nomination-reason", { selectedNominee, nominationReason });
 	};
 
 	const onSubmit = (data) => {
-		console.log(data);
 		history.push("/nomination-overview", {
 			selectedNominee,
 			nominationReason,
@@ -101,28 +100,32 @@ const NominationOpinion = () => {
 						As you know, out of the nominees chosen, we spin a wheel to pick the
 						cube of the month. What’s your opinion on this method?
 					</p>
-					<div className="flex items-center my-7">
+					<div className="lg:flex items-center my-7">
 						{isMidScreen ? (
 							opinions.map((opinion, index) => (
 								<span
 									key={index}
-									className={`cursor-pointer mr-2 block border-2 border-white p-3 hover:border-pink-500 ${
+									className={`bg-white border-2 border-gray-200 flex items-center justify-between cursor-pointer mr-2 mb-2 w-full p-3 hover:border-pink-500 ${
 										selectedOpinion === opinion.value ? "bg-gray-200" : ""
+									} ${
+										selectedOpinion === opinion.value
+											? "border-gray-500 shadow-sm shadow-gray-400"
+											: ""
 									}`}
 									onClick={() => handleOpinionClick(opinion.value)}>
-									<input
-										type="radio"
-										id={`opinion-${index}`}
-										value={opinion.value}
-										{...register("opinion")}
-										onClick={() => handleOpinionClick(opinion.value)}
-									/>
 									<img
 										src={opinion.imageSrc}
 										alt={`Emoji ${index}`}
 										width="35"
 										height="35"
 										className="block"
+									/>
+									<input
+										type="radio"
+										id={`opinion-${index}`}
+										value={opinion.value}
+										{...register("opinion")}
+										onClick={() => handleOpinionClick(opinion.value)}
 									/>
 								</span>
 							))
@@ -131,10 +134,12 @@ const NominationOpinion = () => {
 								{opinions.map((opinion, index) => (
 									<span
 										key={index}
-										className={`cursor-pointer mr-2 block border-2 bg-gray-100 border-white p-3 hover:border-pink-500 ${
+										className={`cursor-pointer mr-2 block border-2 bg-gray-100  p-3 hover:border-pink-500 ${
 											selectedOpinion === opinion.value
 												? " border-pink-500"
-												: ""
+												: "border-white"
+										} ${
+											selectedOpinion === opinion.value ? "border-pink-500" : ""
 										}`}
 										onClick={() => handleOpinionClick(opinion.value)}>
 										<input
@@ -159,7 +164,7 @@ const NominationOpinion = () => {
 					</div>
 
 					{errors.opinion && (
-						<p className="text-red-500 text-xs italic">
+						<p className="text-pink-500 text-xs italic">
 							{errors.opinion.message}
 						</p>
 					)}
@@ -167,7 +172,7 @@ const NominationOpinion = () => {
 						<button
 							type="button"
 							onClick={openConfirmation}
-							className="bg-white border block border-black hover:text-white hover:bg-black text-black font-bold px-4 py-2 uppercase font-Poppins text-xs">
+							className="bg-white border-2 md:block md:w-[25%] border-black hover:text-white hover:bg-black text-black font-bold px-4  py-2 uppercase font-Poppins text-xs">
 							Back
 						</button>
 						<button
@@ -175,8 +180,8 @@ const NominationOpinion = () => {
 							onClick={handleSubmit(onSubmit)}
 							className={`${
 								Object.keys(errors).length > 0
-									? "bg-gray-300 text-gray-500 cursor-not-allowed font-bold uppercase py-2 px-4 font-Poppins text-xs"
-									: "bg-black hover:bg-white hover:border hover:border-black hover:text-black text-white font-bold uppercase py-2 px-4 font-Poppins text-xs"
+									? "bg-gray-300 text-gray-500 cursor-not-allowed font-bold uppercase py-2 px-4 md:ml-2 mt-3 md:mt-0 font-Poppins text-xs border-2 md:block grow"
+									: "bg-black hover:bg-white hover:border-2 hover:border-black hover:text-black text-white font-bold uppercase py-2 px-4 md:ml-2 mt-3 border-2 border-black md:mt-0 font-Poppins md:block text-xs grow "
 							}`}
 							disabled={Object.keys(errors).length > 0}>
 							Next

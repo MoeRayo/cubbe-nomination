@@ -28,9 +28,9 @@ const LandingContent = () => {
 						className={`bg-white ${
 							isSmallScreen
 								? "shadow-2xl m-0 shadow-black sticky bottom-0 p-2"
-								: ""
+								: "mb-5 mx-5"
 						}`}>
-						<button className="border-2 md:block m-auto bg-black my-1 w-full text-white px-4 md:w-[40%] py-3 text-sm font-bold uppercase font-Poppins hover:bg-white hover:border-black hover:text-black transition-all">
+						<button className="border-2 md:block m-auto bg-black my-1 w-full text-white px-4 md:w-[60%] lg:w-[40%] py-3 text-sm font-bold uppercase font-Poppins hover:bg-white hover:border-black hover:text-black transition-all">
 							Get started
 						</button>
 					</div>

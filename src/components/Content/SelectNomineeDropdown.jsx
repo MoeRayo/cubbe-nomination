@@ -5,7 +5,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import PropTypes from "prop-types";
 import * as Yup from "yup";
 import { useHistory } from "react-router-dom";
-import { useMediaQuery } from "react-responsive";
 
 Modal.setAppElement("#root");
 
@@ -15,7 +14,6 @@ const schema = Yup.object().shape({
 
 const SelectNomineeDropdown = ({ nominees, onSubmit }) => {
 	const history = useHistory();
-	const isSmallScreen = useMediaQuery({ maxWidth: 370 });
 
 	const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
 
@@ -41,8 +39,8 @@ const SelectNomineeDropdown = ({ nominees, onSubmit }) => {
 	});
 
 	return (
-		<form onSubmit={handleSubmit(onSubmit)} className="my-4 relative">
-			<div className="mb-4">
+		<form onSubmit={handleSubmit(onSubmit)} className="my-4">
+			<div className="mb-10">
 				<label className="font-bold font-Poppins text-sm">
 					<span className="text-red-500">*</span> Cube’s name
 				</label>
@@ -74,22 +72,19 @@ const SelectNomineeDropdown = ({ nominees, onSubmit }) => {
 					</p>
 				)}
 			</div>
-			<div
-				className={`bg-white ${
-					isSmallScreen ? "shadow-2xl m-0 shadow-black sticky bottom-0 p-2" : ""
-				}`}>
+			<div className="bg-white flex md:flex-row flex-col">
 				<button
 					type="button"
 					onClick={openConfirmation}
-					className="bg-white border block border-black hover:text-white hover:bg-black text-black font-bold px-4 py-2 uppercase font-Poppins text-xs">
+					className="bg-white border-2 md:block md:w-[25%] border-black hover:text-white hover:bg-black text-black font-bold px-4  py-2 uppercase font-Poppins text-xs">
 					Back
 				</button>
 				<button
 					type="submit"
 					className={`${
 						Object.keys(errors).length > 0
-							? "bg-gray-300 text-gray-500 cursor-not-allowed font-bold uppercase py-2 px-4 font-Poppins text-xs"
-							: "bg-black hover:bg-white hover:border hover:border-black hover:text-black text-white font-bold uppercase py-2 px-4 font-Poppins text-xs"
+							? "bg-gray-300 text-gray-500 cursor-not-allowed font-bold uppercase py-2 px-4 md:ml-2 mt-3 md:mt-0 font-Poppins text-xs border-2 md:block grow"
+							: "bg-black hover:bg-white hover:border-2 hover:border-black hover:text-black text-white font-bold uppercase py-2 px-4 md:ml-2 mt-3 border-2 border-black md:mt-0 font-Poppins md:block text-xs grow "
 					}`}
 					disabled={Object.keys(errors).length > 0}>
 					Next

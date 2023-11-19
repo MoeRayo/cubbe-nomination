@@ -2,6 +2,7 @@ import { Link, useHistory } from "react-router-dom";
 import AuthForm from "../../reuseables/AuthForm";
 import { fetchCubeAcademyRegister } from "../../api/nominationsComponents";
 import { setAuthToken } from "../../utils/authHelper";
+import toast, { Toaster } from "react-hot-toast";
 
 const Signup = () => {
 	const history = useHistory();
@@ -20,8 +21,8 @@ const Signup = () => {
 			setAuthToken(authToken);
 
 			history.push("/select-nominee");
-		} catch (error) {
-			console.error(error);
+		} catch {
+			toast.error("Login Invalid!", { duration: 2000, position: "top-right" });
 		}
 	};
 
@@ -41,6 +42,7 @@ const Signup = () => {
 					<span className="underline"> Sign in instead</span>
 				</Link>
 			</p>
+			<Toaster />
 		</div>
 	);
 };

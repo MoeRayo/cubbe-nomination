@@ -4,6 +4,7 @@ import { getAuthToken } from "../../utils/authHelper";
 import ClosedNominations from "./ClosedNominations";
 import CurrentNominations from "./CurrentNominations";
 import EmptyNominations from "./EmptyNominations";
+import toast, { Toaster } from "react-hot-toast";
 
 const ViewNominations = () => {
 	const [allNominations, setAllNominations] = useState([]);
@@ -18,13 +19,16 @@ const ViewNominations = () => {
 
 			setAllNominations(response.data);
 		} catch (error) {
-			console.error("Error fetching data:", error);
+			toast.error(error.stack.error, {
+				duration: 2000,
+				position: "top-right",
+			});
 		}
 	};
 
 	useEffect(() => {
 		retrieveData();
-	}, []); // Empty dependency array to run only once
+	}, []);
 
 	const currentDate = new Date();
 
@@ -40,7 +44,6 @@ const ViewNominations = () => {
 	});
 
 	let nominations = dataWithStatus;
-	console.log("ll", dataWithStatus);
 
 	const [selectedStatus, setSelectedStatus] = useState(false);
 
@@ -56,7 +59,6 @@ const ViewNominations = () => {
 	);
 
 	if (!nominations || nominations.length === 0) {
-		console.log("cucuc");
 		return (
 			<EmptyNominations
 				size="w-[70%] my-10"
@@ -66,33 +68,35 @@ const ViewNominations = () => {
 	}
 
 	return (
-		<div className="md:w-[50%] mx-auto  py-10 ">
-			<div>
-				<h2 className="uppercase font-Poppins font-bold text-2xl mb-4">
+		<div className="md:w-[60%] mx-auto pb-10">
+			<div
+				className="bg-gradient-to-r from-nomination-status to-color-gradient md:bg-none px-4
+       md:px-0 pb-8 m py-10">
+				<h2 className=" uppercase font-Poppins font-bold text-2xl mb-4">
 					your nominations
 				</h2>
 				<div className="flex space-x-4 font-AnonymousPro text-xs font-bold">
 					<button
 						onClick={() => handleStatusChange(false)}
-						className={`py-2 px-4 ${
+						className={`py-2 px-4 text-black shadow-md ${
 							selectedStatus === false
-								? "bg-white text-black shadow-md "
-								: "bg-green-500 opacity-75 text-white"
+								? "bg-white  shadow-md "
+								: "bg-nomination-status opacity-75  shadow-nomination-status"
 						}`}>
 						Current
 					</button>
 					<button
 						onClick={() => handleStatusChange(true)}
-						className={`py-2 px-4 ${
+						className={`py-2 px-4 shadow-md text-black ${
 							selectedStatus === true
-								? "bg-white text-black"
-								: "bg-green-500 opacity-75 text-white"
+								? "bg-white "
+								: "bg-nomination-status shadow-nomination-status opacity-75 text-black"
 						}`}>
 						Closed
 					</button>
 				</div>
 			</div>
-			<div className="mt-8">
+			<div className="">
 				{selectedStatus === false && (
 					<CurrentNominations
 						nominations={currentNominations}
@@ -103,6 +107,7 @@ const ViewNominations = () => {
 					<ClosedNominations nominations={closedNominations} />
 				)}
 			</div>
+			<Toaster />
 		</div>
 	);
 };

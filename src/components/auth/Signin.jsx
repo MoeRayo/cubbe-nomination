@@ -2,6 +2,7 @@ import { Link, useHistory } from "react-router-dom";
 import AuthForm from "../../reuseables/AuthForm";
 import { fetchCubeAcademyLogin } from "../../api/nominationsComponents";
 import { setAuthToken } from "../../utils/authHelper";
+import toast, { Toaster } from "react-hot-toast";
 const Signin = () => {
 	const history = useHistory();
 	const onSubmit = async (data) => {
@@ -15,10 +16,9 @@ const Signin = () => {
 			const authToken = response?.data?.authToken;
 
 			setAuthToken(authToken);
-
 			history.push("/select-nominee");
-		} catch (error) {
-			console.error(error);
+		} catch {
+			toast.error("Login Invalid!", { duration: 2000, position: "top-right" });
 		}
 	};
 
@@ -30,12 +30,13 @@ const Signin = () => {
 	return (
 		<div className="bg-white p-6 max-w-md mx-auto my-10">
 			<AuthForm onSubmit={onSubmit} fields={fields} buttonText="Sign in" />
-			<p className="font-Poppins font-bold text-sm">
+			<p className="font-Poppins font-bold text-xs md:text-sm">
 				Do not have an account?
 				<Link to="/Signup">
 					<span className="underline"> Sign up here</span>
 				</Link>
 			</p>
+			<Toaster />
 		</div>
 	);
 };

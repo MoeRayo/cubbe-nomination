@@ -6,13 +6,13 @@ import smNominationOverview from "../../assets/sm-nomination-overview-image.png"
 import EditableForm from "../../reuseables/EditableForm";
 import { getAuthToken } from "../../utils/authHelper";
 import { fetchCubeAcademyCreateNomination } from "../../api/nominationsComponents";
+import toast, { Toaster } from "react-hot-toast";
 
 const NominationOverview = () => {
 	const history = useHistory();
 	const isSmallScreen = useMediaQuery({ maxWidth: 370 });
 
 	const location = useLocation();
-	console.log(location);
 	const selectedNominee = location.state?.selectedNominee;
 	const selectedNomineeId =
 		location.state?.selectedNominee?.nominee_id ||
@@ -21,9 +21,7 @@ const NominationOverview = () => {
 	const nominationReason = location.state?.nominationReason;
 	const nominationOpinion = location.state?.nominationOpinion;
 
-	const onSubmit = (data) => {
-		console.log("data", data);
-	};
+	const onSubmit = () => {};
 	const createNomination = async (data) => {
 		try {
 			await fetchCubeAcademyCreateNomination({
@@ -38,7 +36,7 @@ const NominationOverview = () => {
 			});
 			history.push("/nomination-submission");
 		} catch (error) {
-			console.error("Error fetching data:", error);
+			toast.error(error.stack.error, { duration: 2000, position: "top-right" });
 		}
 	};
 
@@ -75,6 +73,7 @@ const NominationOverview = () => {
 					/>
 				</div>
 			</section>
+			<Toaster />
 		</div>
 	);
 };
