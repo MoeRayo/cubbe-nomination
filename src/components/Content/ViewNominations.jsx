@@ -5,9 +5,11 @@ import ClosedNominations from "./ClosedNominations";
 import CurrentNominations from "./CurrentNominations";
 import EmptyNominations from "./EmptyNominations";
 import toast, { Toaster } from "react-hot-toast";
+import { useHistory } from "react-router-dom";
 
 const ViewNominations = () => {
 	const [allNominations, setAllNominations] = useState([]);
+	const history = useHistory();
 
 	const retrieveData = async () => {
 		try {
@@ -27,8 +29,17 @@ const ViewNominations = () => {
 	};
 
 	useEffect(() => {
+		if (!getAuthToken()) {
+			toast.error("Please sign in", {
+				duration: 2000,
+				position: "top-right",
+			});
+			history.push("/Signin");
+			return;
+		}
+
 		retrieveData();
-	}, []);
+	}, [history]);
 
 	const currentDate = new Date();
 

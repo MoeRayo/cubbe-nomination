@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import editIcon from "../assets/edit-icon.svg";
+import toast, { Toaster } from "react-hot-toast";
 
 const schema = Yup.object().shape({
 	name: Yup.string().required("Name is required"),
@@ -27,7 +28,10 @@ const EditableForm = ({ initialData, onSubmit, submitNominationData }) => {
 			await submitNominationData(data);
 			onSubmit(data);
 		} catch (error) {
-			console.error("Error submitting nomination:", error);
+			toast.error(error.stack.error, {
+				duration: 2000,
+				position: "top-right",
+			});
 		}
 	};
 
@@ -207,6 +211,7 @@ const EditableForm = ({ initialData, onSubmit, submitNominationData }) => {
 					Submit
 				</button>
 			</div>
+			<Toaster />
 		</form>
 	);
 };

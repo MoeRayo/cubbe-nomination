@@ -8,7 +8,7 @@ import emblem from "../../assets/emblem.svg";
 import plus from "../../assets/plus.svg";
 
 const Header = () => {
-	const [numberOfNominations, setNumberOfNominations] = useState(0);
+	const [numberOfNominations, setNumberOfNominations] = useState();
 	const [authState, setAuthState] = useState();
 
 	useEffect(() => {

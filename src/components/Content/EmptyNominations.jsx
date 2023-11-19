@@ -1,5 +1,6 @@
 import inboxIcon from "../../assets/inbox-icon.svg";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const EmptyNominations = ({ text, size }) => {
 	const containerClasses = `bg-white mx-auto text-center py-10 md:px-6 ${size}`;
@@ -19,6 +20,11 @@ const EmptyNominations = ({ text, size }) => {
 			</Link>
 		</div>
 	);
+};
+
+EmptyNominations.propTypes = {
+	text: PropTypes.string.isRequired,
+	size: PropTypes.string.isRequired,
 };
 
 export default EmptyNominations;

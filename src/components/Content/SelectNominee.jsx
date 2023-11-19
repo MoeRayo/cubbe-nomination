@@ -34,9 +34,16 @@ const SelectNominee = () => {
 				});
 			}
 		};
-
+		if (!getAuthToken()) {
+			toast.error("please sign in", {
+				duration: 2000,
+				position: "top-right",
+			});
+			history.push("/Signin");
+			return;
+		}
 		fetchData();
-	}, []);
+	}, [history]);
 
 	const onSubmit = (data) => {
 		const selectedNominee = JSON.parse(data.nominee);
