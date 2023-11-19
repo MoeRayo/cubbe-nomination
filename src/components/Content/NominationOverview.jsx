@@ -36,7 +36,7 @@ const NominationOverview = () => {
 					process: data.opinion,
 				},
 			});
-			history.push("/nomination-submissison");
+			history.push("/nomination-submission");
 		} catch (error) {
 			console.error("Error fetching data:", error);
 		}

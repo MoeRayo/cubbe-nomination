@@ -22,7 +22,7 @@ const Header = () => {
 				/>
 			</div>
 			<Link
-				to="/nominations"
+				to="/view-nominations"
 				className="text-white underline text-xs font-AnonymousPro hidden md:block">
 				Your nominations ()
 			</Link>
