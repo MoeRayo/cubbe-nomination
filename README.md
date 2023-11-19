@@ -16,6 +16,10 @@ Before you begin, please install [Node.js](https://nodejs.org/en/) (LTS version 
 git clone https://github.com/MoeRayo/cubbe-nomination.git
 ```
 
+or
+
+Download the ZIP
+
 ### Navigate to project directory
 
 ```
