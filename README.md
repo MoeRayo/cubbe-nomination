@@ -2,6 +2,10 @@
 
 ## Getting Started
 
+### Repository
+
+[Cube Academy](https://github.com/MoeRayo/cube-nomination)
+
 Please follow the steps below to run this application in your local environment.
 
 Before you begin, please install [Node.js](https://nodejs.org/en/) on your machine.
