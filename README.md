@@ -18,13 +18,14 @@ git clone https://github.com/MoeRayo/cubbe-nomination.git
 
 or
 
-Download the ZIP
+### Using ZIP
+
+- Download the ZIP
+- Extract the files
 
 ### Navigate to project directory
 
-```
-cd cube-nomination
-```
+- cd to root directory (cube-nomination)
 
 ### Install dependencies
 
