@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import {} from "react";
 import { fetchCubeAcademyGetAllNominations } from "../../api/nominationsComponents";
 import { getAuthToken } from "../../utils/authHelper";
 import ClosedNominations from "./ClosedNominations";
@@ -8,23 +7,24 @@ import EmptyNominations from "./EmptyNominations";
 
 const ViewNominations = () => {
 	const [allNominations, setAllNominations] = useState([]);
+
+	const retrieveData = async () => {
+		try {
+			const response = await fetchCubeAcademyGetAllNominations({
+				headers: {
+					Authorization: `Bearer ${getAuthToken()}`,
+				},
+			});
+
+			setAllNominations(response.data);
+		} catch (error) {
+			console.error("Error fetching data:", error);
+		}
+	};
+
 	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				const response = await fetchCubeAcademyGetAllNominations({
-					headers: {
-						Authorization: `Bearer ${getAuthToken()}`,
-					},
-				});
-
-				setAllNominations(response.data);
-			} catch (error) {
-				console.error("Error fetching data:", error);
-			}
-		};
-
-		fetchData();
-	}, []);
+		retrieveData();
+	}, []); // Empty dependency array to run only once
 
 	const currentDate = new Date();
 
@@ -40,24 +40,23 @@ const ViewNominations = () => {
 	});
 
 	let nominations = dataWithStatus;
+	console.log("ll", dataWithStatus);
 
 	const [selectedStatus, setSelectedStatus] = useState(false);
-
-	console.log("nnn", nominations);
-
-	const currentNominations = nominations.filter(
-		(nomination) => nomination.isClosed === false
-	);
-	const closedNominations = nominations.filter(
-		(nomination) => nomination.isClosed === true
-	);
 
 	const handleStatusChange = (status) => {
 		setSelectedStatus(status);
 	};
+	const currentNominations = dataWithStatus.filter(
+		(nomination) => !nomination.isClosed
+	);
+
+	const closedNominations = dataWithStatus.filter(
+		(nomination) => nomination.isClosed
+	);
+
 	if (!nominations || nominations.length === 0) {
 		console.log("cucuc");
-
 		return (
 			<EmptyNominations
 				size="w-[70%] my-10"
@@ -95,7 +94,10 @@ const ViewNominations = () => {
 			</div>
 			<div className="mt-8">
 				{selectedStatus === false && (
-					<CurrentNominations nominations={currentNominations} />
+					<CurrentNominations
+						nominations={currentNominations}
+						retrieveData={retrieveData}
+					/>
 				)}
 				{selectedStatus === true && (
 					<ClosedNominations nominations={closedNominations} />
