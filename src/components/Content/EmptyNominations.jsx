@@ -8,7 +8,7 @@ const EmptyNominations = ({ text, size }) => {
 	return (
 		<div className={containerClasses}>
 			<img src={inboxIcon} alt="inbox icon" className="block mx-auto mb-7" />
-			<h3 className="uppercase text-gray-500 font-bold text-2xl mb-9">
+			<h3 className="uppercase text-gray-500 font-bold text-2xl mb-9 px-3 md:px-0">
 				{text}
 			</h3>
 			<Link to="/select-nominee">
