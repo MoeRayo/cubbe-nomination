@@ -2,7 +2,7 @@
 
 ## Getting Started
 
-Please follwo the steps below to run this application in your local environment.
+Please follow the steps below to run this application in your local environment.
 
 Before you begin, please install [Node.js](https://nodejs.org/en/) on your machine.
 
