@@ -4,36 +4,38 @@
 
 ### Repository
 
-[Cube Academy](https://github.com/MoeRayo/cube-nomination)
+[Cube Academy](https://github.com/MoeRayo/cube-academy)
 
 Please follow the steps below to run this application in your local environment.
 
 Before you begin, please install [Node.js](https://nodejs.org/en/) (LTS version recommended) on your machine.
 
-### Clone the repository
+### Step 1
+
+#### Clone the repository
 
 ```bash
-git clone https://github.com/MoeRayo/cubbe-nomination.git
+git clone https://github.com/MoeRayo/cube-academy.git
 ```
 
 or
 
-### Using ZIP
+#### Using ZIP
 
 - Download the ZIP
 - Extract the files
 
-### Navigate to project directory
+### Step 2 - Navigate to project directory
 
-- cd to root directory (cube-nomination)
+- cd to root directory (cube-academy)
 
-### Install dependencies
+### Step 3 - Install dependencies
 
 ```bash
 npm install
 ```
 
-### Start server
+### Step 4 - Start server
 
 ```bash
 npm run dev
